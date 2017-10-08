@@ -5,7 +5,7 @@
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2010 osCommerce
+  Copyright (c) 2017 osCommerce
 
   Released under the GNU General Public License
 */
@@ -103,10 +103,9 @@
 		      } // end if defined
         } // end for 1 to 5 advanced group
 
-			/*	if($output) {
+				if($output) {
 					$output = '<div class="ui-widget-content infoBoxContents" style="display:inline-block;border-top:0px;text-align:center;" >'.$output.'</div>';
-				}	*/
-			  $output = 'Johnny testing';
+				}	
 
 				if (strlen($output)) {
 					ob_start();
