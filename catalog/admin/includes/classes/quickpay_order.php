@@ -18,22 +18,26 @@
 
   class quickpay_order extends order {
     public $info, $totals, $products, $customer, $delivery, $content_type;
-		public $order_id;
-
-    // CAUTION - unlike parent constructor, this takes a populated order object
-		function __construct($order) {
-      global $order_id; // order class doesn't hold order id - check it's set in context!
-			if (!(int)$order_id > 0) {
-				if (! isset($_GET['oID']) && (int)$_GET['oID'] > 0) return false;
-				$order_id = (int)$_GET['oID'];
+//	public $order_id;
+	
+	// CAUTION - unlike parent constructor, this takes a populated order object
+	function __construct(order $order) { 
+		global $order_id; // order class doesn't hold order id - check it's set in context!
+		if (!(int)$order_id > 0) {
+			if (! isset($_GET['oID']) && (int)$_GET['oID'] > 0) return false;
+			$order_id = (int)$_GET['oID'];
+		}
+		
+		foreach (get_object_vars($order) as $key => $value) {
+			if (is_object($value) || (is_array($value))) {
+				$this->$key = $value;
+			} else {
+				$this->$key = unserialize(serialize($value));
 			}
-			
-			foreach (get_object_vars($order) as $key => $value) {
-			  $this->$key = $value;
-			}
-			
-			$this->id_query($order_id);
-    }
+		}
+		
+		$this->id_query($order_id);
+	}
 
     function id_query($order_id) {
       global $languages_id;

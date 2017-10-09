@@ -22,6 +22,7 @@
 	if (!defined('DIR_WS_IMAGES')) define('DIR_WS_IMAGES','images/');
 	
 	include(DIR_FS_CATALOG.DIR_WS_CLASSES.'QuickpayApi.php');
+	global $api;
 	$api = new QuickpayApi();
 	$api->setOptions(MODULE_PAYMENT_QUICKPAY_ADVANCED_USERAPIKEY);
 	

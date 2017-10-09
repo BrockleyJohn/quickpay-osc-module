@@ -27,9 +27,14 @@
 			
 			$output = '';
 			
-			$order = new quickpay_order($order);
-			
-			if (array_key_exists('cc_transactionid',$order->info) && strlen($order->info['cc_transactionid'])) {
+			if ( !class_exists('quickpay_order') ) {
+				include(DIR_WS_CLASSES . 'quickpay_order.php');
+			}
+			if (!($order instanceof quickpay_order)) {
+				$order = new quickpay_order($order);
+			}
+	//		echo ('<pre>'.print_r($order,true).'</pre>');
+			if (array_key_exists('cc_transactionid',$order->info) && !is_null($order->info['cc_transactionid'])) {
 			// code moved from orders_gui_admin.php
 
 				// Only show quickpay transaction when we have an transacctionid from payment gateway
@@ -106,7 +111,7 @@
 							case 'renew': //-not implemented in this version
 				
 								$form .= tep_draw_form('transaction_form', FILENAME_ORDERS, tep_get_all_get_params(array('action')) . 'action=quickpay_capture');
-								$form .= tep_draw_hidden_field('oID', $oID), tep_draw_hidden_field('currency', $ostatus['currency']);
+								$form .= tep_draw_hidden_field('oID', $oID) . tep_draw_hidden_field('currency', $ostatus['currency']);
 							   
 								$form .= tep_draw_input_field('amount_big', $amount_big, 'size="11" style="text-align:right" ', false, 'text', false);
 								$form .= ' , ';
@@ -143,7 +148,7 @@
 									$amount_small = $formatamount[1];
 					
 									$form .= tep_draw_form('transaction_form', FILENAME_ORDERS, tep_get_all_get_params(array('action')) . 'action=quickpay_capture');
-									$form .= tep_draw_hidden_field('oID', $oID), tep_draw_hidden_field('currency', $ostatus['currency']);
+									$form .= tep_draw_hidden_field('oID', $oID) . tep_draw_hidden_field('currency', $ostatus['currency']);
 									$form .= tep_draw_input_field('amount_big', $amount_big, 'size="11" style="text-align:right" ', false, 'text', false);
 									$form .= ' , ';
 									$form .= tep_draw_input_field('amount_small', $amount_small, 'size="3" ', false, 'text', false) . ' ' . $ostatus['currency'] . ' ';
@@ -173,7 +178,7 @@
 								if ($resttorefund > 0) {
 									$form .= "<b>".IMAGE_TRANSACTION_CREDIT_INFO."</b><br>\n";	
 									$form .= tep_draw_form('transaction_refundform', FILENAME_ORDERS, tep_get_all_get_params(array('action')) . 'action=quickpay_credit');
-									$form .= tep_draw_hidden_field('oID', $oID), tep_draw_hidden_field('currency', $ostatus['currency']);
+									$form .= tep_draw_hidden_field('oID', $oID) . tep_draw_hidden_field('currency', $ostatus['currency']);
 									$form .= tep_draw_input_field('amount_big', str_replace('.','',$amount_big), 'size="11" style="text-align:right" ', false, 'text', false);
 									$form .= ' , ';
 									$form .= tep_draw_input_field('amount_small', $amount_small, 'size="3" ', false, 'text', false) . ' ' . $ostatus['currency'] . ' ';

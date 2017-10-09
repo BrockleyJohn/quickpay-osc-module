@@ -6,10 +6,12 @@ if (!defined('DIR_WS_LANGUAGES')) define('DIR_WS_LANGUAGES','includes/languages/
 if (!defined('FILENAME_CHECKOUT_PROCESS')) define('FILENAME_CHECKOUT_PROCESS','checkout_process.php');
 if (!defined('FILENAME_ACCOUNT_HISTORY_INFO')) define('FILENAME_ACCOUNT_HISTORY_INFO','account_history_info.php');
 
-include(DIR_FS_CATALOG.DIR_WS_CLASSES.'QuickpayApi.php');
+include(DIR_WS_LANGUAGES . $language . '/modules/payment/quickpay_advanced.php');
 
-$oid = MODULE_PAYMENT_QUICKPAY_ADVANCED_AGGREEMENTID.sprintf('%04d', $_GET["oid"]);
-	
+require(DIR_FS_CATALOG.DIR_WS_CLASSES.'QuickpayApi.php');
+
+$oid = MODULE_PAYMENT_QUICKPAY_ADVANCED_ORDERPREFIX.sprintf('%04d', $_GET["oid"]);
+
 		$qp = new QuickpayApi;
 
 		$qp->setOptions( MODULE_PAYMENT_QUICKPAY_ADVANCED_USERAPIKEY);
@@ -20,8 +22,16 @@ $oid = MODULE_PAYMENT_QUICKPAY_ADVANCED_AGGREEMENTID.sprintf('%04d', $_GET["oid"
 		}
     // Commit the status request, checking valid transaction id
      $str = $qp->status($oid);
+
+$log = "Callback request " . date('d-m-Y H:i:s') . "\n" . print_r($_REQUEST,true) . "\n";
+$log .= "Api status return " . date('d-m-Y H:i:s') . "\n" . print_r($str,true) . "\n";
+
 	 $str["operations"][0] = array_reverse($str["operations"][0]);
  
+$log .= "After reverse " . date('d-m-Y H:i:s') . "\n" . print_r($str,true) . "\n";
+$log .= "----------------- " . "\n";
+file_put_contents('qp-api.log', $log, FILE_APPEND);
+
  $qp_status = $str[0]["operations"][0]["qp_status_code"];
  $qp_type = strtolower($str[0]["type"]);
  $qp_operations_type = $str[0]["operations"][0]["type"];
@@ -40,6 +50,7 @@ $oid = MODULE_PAYMENT_QUICKPAY_ADVANCED_AGGREEMENTID.sprintf('%04d', $_GET["oid"
   $qp_pending = ($str[0]["pending"] == "true" ? " - pending ": "");
   $qp_expire = $str[0]["metadata"]["exp_month"]."-".$str[0]["metadata"]["exp_year"];
   $qp_cardhash = $str[0]["operations"][0]["type"].(strstr($str[0]["description"],'Subscription') ? " Subscription" : "");
+
 
 
  if (!$str[0]["id"]) {

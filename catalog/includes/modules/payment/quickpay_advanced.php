@@ -1130,15 +1130,15 @@ $_SESSION['qlink'] = $storder['url'];
 
         $cc_query = tep_db_query("describe " . TABLE_ORDERS . " cc_transactionid");
         if (tep_db_num_rows($cc_query) == 0) {
-            tep_db_query("ALTER TABLE " . TABLE_ORDERS . " ADD cc_transactionid VARCHAR( 64 ) NULL default 'NULL'");
+            tep_db_query("ALTER TABLE " . TABLE_ORDERS . " ADD cc_transactionid VARCHAR( 64 ) NULL default NULL");
         }
        $cc_query = tep_db_query("describe " . TABLE_ORDERS . " cc_cardhash");
         if (tep_db_num_rows($cc_query) == 0) {
-            tep_db_query("ALTER TABLE " . TABLE_ORDERS . " ADD cc_cardhash VARCHAR( 64 ) NULL default 'NULL'");
+            tep_db_query("ALTER TABLE " . TABLE_ORDERS . " ADD cc_cardhash VARCHAR( 64 ) NULL default NULL");
         }
  $cc_query = tep_db_query("describe " . TABLE_ORDERS . " cc_cardtype");
         if (tep_db_num_rows($cc_query) == 0) {
-            tep_db_query("ALTER TABLE " . TABLE_ORDERS . " ADD cc_cardtype VARCHAR( 64 ) NULL default 'NULL'");
+            tep_db_query("ALTER TABLE " . TABLE_ORDERS . " ADD cc_cardtype VARCHAR( 64 ) NULL default NULL");
         }
 		tep_db_query("ALTER TABLE  " . TABLE_ORDERS . " CHANGE  cc_expires  cc_expires VARCHAR( 8 )  NULL DEFAULT NULL");
 		
