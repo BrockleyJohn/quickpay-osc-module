@@ -53,7 +53,7 @@ function json_message($input){
 		$operations = array_reverse($eval["operations"]);
       if ($operations[0]["qp_status_code"] === '20000') {
           // The reversal was completed
-          $result .= 'Succes: ' . $operations[0]["qp_status_msg"];
+          $result .= 'Success: ' . $operations[0]["qp_status_msg"];
           $messageStack->add_session($result, 'success');
       
       }
@@ -82,6 +82,7 @@ function json_message($input){
     // Commit the capture
     $eval = $qp->capture($id,$amount);
       $result = 'QuickPay Capture ';
+//	  exit("<pre>".print_r($eval,true)."</pre>");
     
 	if ($eval) {
 		$operations= array_reverse($eval["operations"]);

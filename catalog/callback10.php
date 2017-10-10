@@ -24,13 +24,11 @@ $oid = MODULE_PAYMENT_QUICKPAY_ADVANCED_ORDERPREFIX.sprintf('%04d', $_GET["oid"]
      $str = $qp->status($oid);
 
 $log = "Callback request " . date('d-m-Y H:i:s') . "\n" . print_r($_REQUEST,true) . "\n";
-$log .= "Api status return " . date('d-m-Y H:i:s') . "\n" . print_r($str,true) . "\n";
+//$log .= "Api status return " . date('d-m-Y H:i:s') . "\n" . print_r($str,true) . "\n";
 
-	 $str["operations"][0] = array_reverse($str["operations"][0]);
+	 $str[0]["operations"] = array_reverse($str[0]["operations"]);
  
 $log .= "After reverse " . date('d-m-Y H:i:s') . "\n" . print_r($str,true) . "\n";
-$log .= "----------------- " . "\n";
-file_put_contents('qp-api.log', $log, FILE_APPEND);
 
  $qp_status = $str[0]["operations"][0]["qp_status_code"];
  $qp_type = strtolower($str[0]["type"]);
@@ -51,13 +49,20 @@ file_put_contents('qp-api.log', $log, FILE_APPEND);
   $qp_expire = $str[0]["metadata"]["exp_month"]."-".$str[0]["metadata"]["exp_year"];
   $qp_cardhash = $str[0]["operations"][0]["type"].(strstr($str[0]["description"],'Subscription') ? " Subscription" : "");
 
+	$log .= "status $qp_status " . "\n";
+	file_put_contents('qp-api.log', $log, FILE_APPEND);
+	$log = '';
 
-
- if (!$str[0]["id"]) {
+ if (!$qp_status) {
+// if (!$str[0]["id"]) {
 	 // Request is NOT authenticated or transaction does not exist
 
-    $sql_data_array = array('cc_transactionid' => tep_db_input(MODULE_PAYMENT_QUICKPAY_ADVANCED_ERROR_TRANSACTION_DECLINED));
+    $sql_data_array = array('cc_transactionid' => MODULE_PAYMENT_QUICKPAY_ADVANCED_ERROR_TRANSACTION_DECLINED);
     tep_db_perform(TABLE_ORDERS, $sql_data_array, 'update', "orders_id = '" . $qp_order_id . "'");
+
+	$log .= "no id... " . "\n";
+	$log .= "----------------- " . "\n";
+	file_put_contents('qp-api.log', $log, FILE_APPEND);
 
     exit();
    
@@ -76,6 +81,7 @@ switch ($qp_status) {
     case '20000':
         // approved
         $qp_approved = true;
+
         break;
     case '40000':
 	case '40001':
@@ -93,11 +99,10 @@ switch ($qp_status) {
       $sql_data_array = array('orders_id' => $qp_order_id,
             'orders_status_id' => MODULE_PAYMENT_QUICKPAY_ADVANCED_REJECTED_ORDER_STATUS_ID,
             'date_added' => 'now()',
-            'customer_notified' => '0');
-			/*,
-            'comments' => 'QuickPay Payment rejected [message: '.$qp_operations_type.'-'. $qp_status_msg . ' - '.$qp_aq_status_msg.']');*/
+            'customer_notified' => '0',
+            'comments' => 'Callback: QuickPay Payment rejected [message: '.$qp_operations_type.'-'. $qp_status_msg . ' - '.$qp_aq_status_msg.']');
 
-        tep_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array,'update', "orders_id = '" . $qp_order_id . "'");
+        tep_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
 
         break;
 
@@ -110,6 +115,14 @@ switch ($qp_status) {
         tep_db_perform(TABLE_ORDERS, $sql_data_array, 'update', "orders_id = '" . $qp_order_id . "'");
 
 
+      $sql_data_array = array('orders_id' => $qp_order_id,
+            'orders_status_id' => MODULE_PAYMENT_QUICKPAY_ADVANCED_ERROR_SYSTEM_FAILURE,
+            'date_added' => 'now()',
+            'customer_notified' => '0',
+            'comments' => 'Callback: QuickPay Payment approved [message: '.$qp_operations_type.'-'. $qp_status_msg . ' - '.$qp_aq_status_msg.']');
+
+        tep_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
+
    /*     $sql_data_array = array('orders_id' => $qp_order_id,
             'orders_status_id' => MODULE_PAYMENT_QUICKPAY_ADVANCED_REJECTED_ORDER_STATUS_ID,
             'date_added' => 'now()',
@@ -120,6 +133,11 @@ switch ($qp_status) {
 
         break;
 }
+
+	$log .= "----------------- " . "\n";
+	file_put_contents('qp-api.log', $log, FILE_APPEND);
+
+
 
 if ($qp_approved) {
  
@@ -150,6 +168,14 @@ if ($qp_approved) {
 
 
             // write/update into order history
+      $sql_data_array = array('orders_id' => $qp_order_id,
+            'orders_status_id' => $order_status_id,
+            'date_added' => 'now()',
+            'customer_notified' => '0',
+            'comments' => 'Callback: QuickPay Payment approved [message: '.$qp_operations_type.'-'. $qp_status_msg . ' - '.$qp_aq_status_msg.']');
+
+        tep_db_perform(TABLE_ORDERS_STATUS_HISTORY, $sql_data_array);
+
 	/*		
 
     $sql = "select * from " . TABLE_ORDERS_STATUS_HISTORY . " where orders_id = '" . $qp_order_id . "'";

@@ -899,7 +899,7 @@ if($_POST['callquickpay'] == "go") {
       tep_db_query("update " . TABLE_ORDERS . " set orders_status = '" . (int)$order_status_approved_id . "', last_modified = now() where orders_id = '" . (int)$order_id . "'");
 
       $sql_data_array = array('orders_id' => $order_id,
-                              'orders_status_id' => (int)$new_order_status,
+                              'orders_status_id' => (int)$order_status_approved_id,
                               'date_added' => 'now()',
                               'customer_notified' => (SEND_EMAILS == 'true') ? '1' : '0',
                               'comments' => $order->info['comments']);

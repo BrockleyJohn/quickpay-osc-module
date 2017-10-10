@@ -106,11 +106,13 @@
 						$amount_big = $formatamount[0];
 						$amount_small = $formatamount[1];
 				
+						$qp_status = '';
 						switch ($ostatus['type']) {
 							case 'authorize': // Authorized
 							case 'renew': //-not implemented in this version
+								$qp_status = QUICKPAY_AUTHORISED;
 				
-								$form .= tep_draw_form('transaction_form', FILENAME_ORDERS, tep_get_all_get_params(array('action')) . 'action=quickpay_capture');
+								$form .= tep_draw_form('transaction_form', FILENAME_ORDERS, tep_get_all_get_params(array('action')) . 'tabaction=quickpay_capture');
 								$form .= tep_draw_hidden_field('oID', $oID) . tep_draw_hidden_field('currency', $ostatus['currency']);
 							   
 								$form .= tep_draw_input_field('amount_big', $amount_big, 'size="11" style="text-align:right" ', false, 'text', false);
@@ -123,7 +125,7 @@
 									$form .= PENDING_STATUS;
 								}
 								$form .= '</form>';
-								$form .= tep_draw_form('transaction_decline_form', FILENAME_ORDERS, tep_get_all_get_params(array('action')) . 'action=quickpay_reverse', 'post');
+								$form .= tep_draw_form('transaction_decline_form', FILENAME_ORDERS, tep_get_all_get_params(array('action')) . 'tabaction=quickpay_reverse', 'post');
 								if ($allowcancel) {
 									$form .= '<a href="javascript:if (qp_check_confirm(\'' . CONFIRM_REVERSE . '\')) document.transaction_decline_form.submit();">' . tep_image(DIR_WS_IMAGES . 'icon_transaction_reverse.gif', IMAGE_TRANSACTION_REVERSE_INFO) . '</a>';
 								}
@@ -139,7 +141,9 @@
 								break;
 
 							case 'capture': // Captured or refunded
+								$qp_status = QUICKPAY_CAPTURED;
 							case 'refund':
+								if (!strlen($qp_status)) $qp_status = QUICKPAY_REFUNDED;
 						
 								if ($resttocap > 0 ) {
 									$form .= "<br><b>".IMAGE_TRANSACTION_CAPTURE_INFO."</b><br>\n";
@@ -147,7 +151,7 @@
 									$amount_big = $formatamount[0];
 									$amount_small = $formatamount[1];
 					
-									$form .= tep_draw_form('transaction_form', FILENAME_ORDERS, tep_get_all_get_params(array('action')) . 'action=quickpay_capture');
+									$form .= tep_draw_form('transaction_form', FILENAME_ORDERS, tep_get_all_get_params(array('action')) . 'tabaction=quickpay_capture');
 									$form .= tep_draw_hidden_field('oID', $oID) . tep_draw_hidden_field('currency', $ostatus['currency']);
 									$form .= tep_draw_input_field('amount_big', $amount_big, 'size="11" style="text-align:right" ', false, 'text', false);
 									$form .= ' , ';
@@ -177,7 +181,7 @@
 								$amount_small = $formatamount[1];	
 								if ($resttorefund > 0) {
 									$form .= "<b>".IMAGE_TRANSACTION_CREDIT_INFO."</b><br>\n";	
-									$form .= tep_draw_form('transaction_refundform', FILENAME_ORDERS, tep_get_all_get_params(array('action')) . 'action=quickpay_credit');
+									$form .= tep_draw_form('transaction_refundform', FILENAME_ORDERS, tep_get_all_get_params(array('action')) . 'tabaction=quickpay_credit');
 									$form .= tep_draw_hidden_field('oID', $oID) . tep_draw_hidden_field('currency', $ostatus['currency']);
 									$form .= tep_draw_input_field('amount_big', str_replace('.','',$amount_big), 'size="11" style="text-align:right" ', false, 'text', false);
 									$form .= ' , ';
@@ -195,6 +199,7 @@
 								}
 								break;
 							case 'cancel': // Reversed
+								$qp_status = QUICKPAY_REVERSED;
 								$form .= tep_draw_input_field('amount_big', str_replace('.','',$amount_big), 'size="11" style="text-align:right" disabled', false, 'text', false);
 								$form .= ' , ';
 								$form .= tep_draw_input_field('amount_small', $amount_small, 'size="3" disabled', false, 'text', false) . ' ' . $ostatus['currency'] . ' ';
@@ -204,10 +209,12 @@
 								$form .= ' (' . $statustext[$ostatus['type']] .')';
 								break;
 							default:
+								$qp_status = sprintf(QUICKPAY_ERROR,$ostatus['qpstatmsg']);
 								$form .= '<font color="red">' . $ostatus['qpstatmsg'] . '</font>';
 								break;
 						}
 					} else {
+						$qp_status = sprintf(QUICKPAY_ERROR,$ostatus['qpstatmsg']);
 						$form .= '<font color="red">' . $ostatus['qpstatmsg'] . '</font>';
 					}
 	
@@ -217,18 +224,31 @@
 					$table .= '<tr><td>'.ENTRY_QUICKPAY_TRANSACTION_ID.'</td><td>'.$id.($testmode== true ? '<font color="red"> TEST MODE</font>' : '')."</td></tr>\n";
 					$table .= '<tr><td>'.ENTRY_QUICKPAY_TRANSACTION_TYPE.'</td><td>'.$statusinfo[0]["type"]." (".$statusinfo[0]["metadata"]["brand"].")"."</td></tr>\n";
 					$table .= '<tr><td>'.ENTRY_QUICKPAY_PAYMENT_LINK.'</td><td>'."<a target='_blank' href='".$plink."' >".$plink."</a>"."</td></tr>\n";
-					$table .= '<tr><td>'.ENTRY_QUICKPAY_STATUS.'</td><td>'.$api->log_operations($operations, $ostatus['currency'])."</td></tr>\n";
-					$table = '</table>'."\n";
+					$table .= '<tr><td>'.ENTRY_QUICKPAY_STATUS.'</td></tr><tr><td colspan="2">'.$api->log_operations($operations, $ostatus['currency'])."</td></tr>\n";
+					$table .= '</table>'."\n";
 					
-					$tab_title = addslashes(TAB_QUICKPAY_TRANSACTION);
+					$tab_title = addslashes(sprintf(TAB_QUICKPAY_TRANSACTION,$qp_status));
 					$tab_link = substr(tep_href_link(FILENAME_ORDERS, tep_get_all_get_params()), strlen($base_url)) . '#section_quickpay_payment';
 					
+					$capture_confirm = CONFIRM_CAPTURE;
+					
 					$output = <<<EOD
-<script>
+<script><!-- 
 $(function() {
-  $('#orderTabs ul').append('<li><a href="{$tab_link}">{$tab_title}</a></li>');
+  $('#orderTabs ul').first().append('<li><a href="{$tab_link}">{$tab_title}</a></li>');
 });
-</script>
+function qp_check_confirm(confirm_text) {
+	return confirm(confirm_text);
+}
+
+function qp_check_capture(amount_big, amount_small, confirm_text) {
+	if (Number(document.transaction_form.amount_big.value) == Number(amount_big) && Number(document.transaction_form.amount_small.value) == Number(amount_small)) {
+		return true;
+	} else {
+		return confirm("$capture_confirm");
+	}
+}
+//--></script>
 
 <div id="section_quickpay_payment" style="padding: 10px;">
  $heading $form

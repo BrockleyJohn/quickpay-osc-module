@@ -12,13 +12,18 @@
   define('MODULE_PAYMENT_QUICKPAY_ADVANCED_TEXT_TITLE', 'QuickPay: Online Payment');
   define('MODULE_PAYMENT_QUICKPAY_ADVANCED_TEXT_PUBLIC_TITLE', 'QuickPay: Online Payment');
   define('MODULE_PAYMENT_QUICKPAY_ADVANCED_TEXT_DESCRIPTION', 'QuickPay Advanced Online payment');
-  define('MODULE_PAYMENT_QUICKPAY_ADVANCED_TEXT_EMAIL_FOOTER', 'Payment is now reserved. The payment has the following transaction-number: %s.' . "\n" . 'When the order is handled, the amount is transferetd to ' . STORE_NAME); 
+  define('MODULE_PAYMENT_QUICKPAY_ADVANCED_TEXT_EMAIL_FOOTER', 'Payment is now reserved. The payment has the following transaction-number: %s.' . "\n" . 'When the order is handled, the amount is transferred to ' . STORE_NAME); 
   define('MODULE_PAYMENT_QUICKPAY_ADVANCED_FEEINFO', '(Fee is added in payment window)');
 define('MODULE_PAYMENT_QUICKPAY_ADVANCED_FEELOCKINFO', ' fee');
   define('MODULE_PAYMENT_QUICKPAY_ADVANCED_TEXT_SELECT_CARD', '* Select what kind of payment type you want to use for your online payment\n');
   define('MODULE_PAYMENT_QUICKPAY_ADVANCED_TEXT_WAIT', 'Please wait a moment. Payment page is prepared...');
   define('MODULE_PAYMENT_QUICKPAY_ADVANCED_TEXT_ERROR', 'Unable to process online payment');
 
+define('DENUNCIATION', 'Ordren betales med ViaBill. Det skyldige beløb kan alene betales med frigørende virkning til ViaBill, som fremsender særskilt opkrævning. Betaling kan ikke ske ved modregning af krav, der udspringer af andre retsforhold.');
+if (!defined('HEADING_RETURN_POLICY')) define('HEADING_RETURN_POLICY','Returns policy');
+if (!defined('TEXT_VIEW')) define('TEXT_VIEW','View');
+if (!defined('TEXT_RETURN_POLICY')) define('TEXT_RETURN_POLICY','This is our returns policy');
+if (!defined('ACCEPT_CONDITIONS')) define('ACCEPT_CONDITIONS','Check ');
 
 // Transaction errors  
   define('MODULE_PAYMENT_QUICKPAY_ADVANCED_ERROR_MERCHANT_UNKNOWN', 'Unknown Merchant Number');
