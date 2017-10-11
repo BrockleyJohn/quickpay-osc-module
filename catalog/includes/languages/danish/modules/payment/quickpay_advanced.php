@@ -19,6 +19,12 @@
   define('MODULE_PAYMENT_QUICKPAY_ADVANCED_TEXT_ERROR', 'Online betaling kunne ikke gennemføres');
 define('MODULE_PAYMENT_QUICKPAY_ADVANCED_FEEINFO', '(evt. gebyr tilføjes ved betaling)');
 define('MODULE_PAYMENT_QUICKPAY_ADVANCED_FEELOCKINFO', ' evt. gebyr');
+define('DENUNCIATION', 'Ordren betales med ViaBill. Det skyldige beløb kan alene betales med frigørende virkning til ViaBill, som fremsender særskilt opkrævning. Betaling kan ikke ske ved modregning af krav, der udspringer af andre retsforhold.');
+if (!defined('HEADING_RETURN_POLICY')) define('HEADING_RETURN_POLICY','Returns policy');
+if (!defined('TEXT_VIEW')) define('TEXT_VIEW','View');
+if (!defined('TEXT_RETURN_POLICY')) define('TEXT_RETURN_POLICY','This is our returns policy');
+if (!defined('ACCEPT_CONDITIONS')) define('ACCEPT_CONDITIONS','Check ');
+
 // Transaction errors  
   define('MODULE_PAYMENT_QUICKPAY_ADVANCED_ERROR_MERCHANT_UNKNOWN', 'Ukendt Merchant Nr');
   define('MODULE_PAYMENT_QUICKPAY_ADVANCED_ERROR_CARDNO_NOT_VALID', 'Ugyldigt kortnummer');
