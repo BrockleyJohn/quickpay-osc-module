@@ -20,10 +20,11 @@
   define('MODULE_PAYMENT_QUICKPAY_ADVANCED_FEEINFO', '(Fee is added in payment window)');
 define('MODULE_PAYMENT_QUICKPAY_ADVANCED_FEELOCKINFO', ' fee');
 define('DENUNCIATION', 'Ordren betales med ViaBill. Det skyldige beløb kan alene betales med frigørende virkning til ViaBill, som fremsender særskilt opkrævning. Betaling kan ikke ske ved modregning af krav, der udspringer af andre retsforhold.');
-if (!defined('HEADING_RETURN_POLICY')) define('HEADING_RETURN_POLICY','Returns policy');
-if (!defined('TEXT_VIEW')) define('TEXT_VIEW','View');
-if (!defined('TEXT_RETURN_POLICY')) define('TEXT_RETURN_POLICY','This is our returns policy');
-if (!defined('ACCEPT_CONDITIONS')) define('ACCEPT_CONDITIONS','Check ');
+if (!defined('HEADING_RETURN_POLICY')) define('HEADING_RETURN_POLICY','Returns policy summary');
+if (!defined('TEXT_VIEW')) define('TEXT_VIEW','View details');
+if (!defined('TEXT_RETURN_POLICY')) define('TEXT_RETURN_POLICY','Summary of returns policy');
+if (!defined('ACCEPT_CONDITIONS')) define('ACCEPT_CONDITIONS','I have read and agree to the terms &amp; conditions: ');
+if (!defined('CONDITION_AGREEMENT_ERROR')) define('CONDITION_AGREEMENT_ERROR','Please agree to our terms & conditions before placing your order.');
 
 // Transaction errors  
   define('MODULE_PAYMENT_QUICKPAY_ADVANCED_ERROR_MERCHANT_UNKNOWN', 'Unknown Merchant Number');

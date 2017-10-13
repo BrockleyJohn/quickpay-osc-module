@@ -13,9 +13,11 @@
 
 // 2.3.4BS Edge compatibility
 if (!defined('DIR_WS_CLASSES')) define('DIR_WS_CLASSES','includes/classes/');
+if (!defined('DIR_WS_ICONS')) define('DIR_WS_ICONS','images/icons/');
 if (!defined('FILENAME_CHECKOUT_CONFIRMATION')) define('FILENAME_CHECKOUT_CONFIRMATION','checkout_confirmation.php');
 if (!defined('FILENAME_CHECKOUT_PAYMENT')) define('FILENAME_CHECKOUT_PAYMENT','checkout_payment.php');
 if (!defined('FILENAME_CHECKOUT_PROCESS')) define('FILENAME_CHECKOUT_PROCESS','checkout_process.php');
+if (!defined('FILENAME_CHECKOUT_SUCCESS')) define('FILENAME_CHECKOUT_SUCCESS','checkout_success.php');
 if (!defined('FILENAME_SHIPPING')) define('FILENAME_SHIPPING','shipping.php');
 
 include(DIR_FS_CATALOG.DIR_WS_CLASSES.'QuickpayApi.php');
@@ -209,7 +211,7 @@ $iconc = (file_exists(DIR_WS_ICONS.$optionc.".gif") ? DIR_WS_ICONS.$optionc.".gi
 		 
 			 $selection = array('id' => $this->code,
          'module' => '<table width="100%" border="0">
-                    <tr class="moduleRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectQuickPayRowEffect(this, ' . ($optscount-1) . ',\''.$option.'\')">
+                    <tr class="moduleRow table-selection" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectQuickPayRowEffect(this, ' . ($optscount-1) . ',\''.$option.'\')">
                         <td class="main" style="height:22px;vertical-align:middle;">' .$options_text.($cost !=0 ? '</td><td class="main" style="height:22px;vertical-align:middle;"> (+ '.MODULE_PAYMENT_QUICKPAY_ADVANCED_FEELOCKINFO.')' :'').'
                             </td>
                     </tr></table>'.tep_draw_hidden_field('cardlock', $option));
@@ -218,7 +220,7 @@ $iconc = (file_exists(DIR_WS_ICONS.$optionc.".gif") ? DIR_WS_ICONS.$optionc.".gi
 	 }else{
 				
 					$selection['fields'][] = array('title' => '<table width="100%" border="0">
-                    <tr class="moduleRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectQuickPayRowEffect(this, ' . ($optscount-1) . ',\''.$option.'\')">
+                    <tr class="moduleRow table-selection" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectQuickPayRowEffect(this, ' . ($optscount-1) . ',\''.$option.'\')">
                         <td class="main" style="height:22px;vertical-align:middle;">' . $options_text.($cost !=0 ? '</td><td style="height:22px;vertical-align:middle;">(+ '.MODULE_PAYMENT_QUICKPAY_ADVANCED_FEELOCKINFO.')' :'').'
                             </td>
                     </tr></table>',
@@ -260,7 +262,7 @@ $icon = (file_exists(DIR_WS_ICONS.$option."_payment.gif") ? DIR_WS_ICONS.$option
 		}
 		
 		 //$cost = $this->calculate_order_fee($order->info['total'], $fees[$i]);
-		 $options_text = '<table><tr><td>'.tep_image($icon,$this->get_payment_options_name($option),$w,$h,' style="position:relative;border:0px;float:left;margin:'.$space.'px;" ').'</td><td style="height: 27px;white-space:nowrap;vertical-align:middle;font-size: 18px;font-color:#666;" >'.$this->get_payment_options_name($option).'</td></tr></table>';
+		 $options_text = '<table width="100%"><tr><td>'.tep_image($icon,$this->get_payment_options_name($option),$w,$h,' style="position:relative;border:0px;float:left;margin:'.$space.'px;" ').'</td><td style="height: 27px;white-space:nowrap;vertical-align:middle;" >'.$this->get_payment_options_name($option).'</td></tr></table>';
 				
 				   	
 			
@@ -268,16 +270,16 @@ $icon = (file_exists(DIR_WS_ICONS.$option."_payment.gif") ? DIR_WS_ICONS.$option
 		 
 		 $selection = array('id' => $this->code,
          'module' => '<table width="100%" border="0">
-                    <tr class="moduleRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectQuickPayRowEffect(this, ' . ($optscount-1) . ',\''.$option.'\')">
-                        <td class="main" style="height: 27px;white-space:nowrap;vertical-align:middle;font-size: 18px;font-color:#666;">' .$options_text.($cost !=0 ? '</td><td style="height:22px;vertical-align:middle;"> (+ '.MODULE_PAYMENT_QUICKPAY_ADVANCED_FEELOCKINFO.')' :'').'
+                    <tr class="moduleRow table-selection" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectQuickPayRowEffect(this, ' . ($optscount-1) . ',\''.$option.'\')">
+                        <td class="main" style="height: 27px;white-space:nowrap;vertical-align:middle;">' .$options_text.($cost !=0 ? '</td><td style="height:22px;vertical-align:middle;"> (+ '.MODULE_PAYMENT_QUICKPAY_ADVANCED_FEELOCKINFO.')' :'').'
                             </td>
                     </tr></table>'.tep_draw_hidden_field('cardlock', $option).tep_draw_hidden_field('qp_card', (isset($fees[1])) ? $fees[1] : '0'));
 		 
 		 
 	 }else{	
 					$selection['fields'][] = array('title' => '<table width="100%" border="0">
-                    <tr class="moduleRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectQuickPayRowEffect(this, ' . ($optscount-1) . ',\''.$option.'\')">
-                        <td class="main" style="height: 27px;white-space:nowrap;vertical-align:middle;font-size: 18px;font-color:#666;">' . $options_text.($cost !=0 ? '</td><td style="height:22px;vertical-align:middle;"> (+ '.MODULE_PAYMENT_QUICKPAY_ADVANCED_FEELOCKINFO.')' :'').'
+                    <tr class="moduleRow table-selection" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectQuickPayRowEffect(this, ' . ($optscount-1) . ',\''.$option.'\')">
+                        <td class="main" style="height: 27px;white-space:nowrap;vertical-align:middle;">' . $options_text.($cost !=0 ? '</td><td style="height:22px;vertical-align:middle;"> (+ '.MODULE_PAYMENT_QUICKPAY_ADVANCED_FEELOCKINFO.')' :'').'
                             </td>
                     </tr></table>',
                     'field' => 
