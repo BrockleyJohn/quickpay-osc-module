@@ -11,5 +11,5 @@
 */
 
   define('MODULE_BOXES_QUICKPAY_TITLE', 'Quickpay');
-  define('MODULE_BOXES_QUICKPAY_DESCRIPTION', 'Cards accepted');
-  define('MODULE_BOXES_QUICKPAY_BOX_TITLE', 'Accepted');
+  define('MODULE_BOXES_QUICKPAY_DESCRIPTION', 'Vi modtager');   //means we accept
+  define('MODULE_BOXES_QUICKPAY_BOX_TITLE', 'Vi modtager');
