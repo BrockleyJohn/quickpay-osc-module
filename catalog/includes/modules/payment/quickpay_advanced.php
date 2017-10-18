@@ -1340,28 +1340,34 @@ tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, conf
 
             case '3d-dankort': return MODULE_PAYMENT_QUICKPAY_ADVANCED_DANKORT_3D_TEXT;
 
-            case 'danske-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_DANSKE_DK_TEXT;
+//          case 'danske-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_DANSKE_DK_TEXT;
             case 'diners': return MODULE_PAYMENT_QUICKPAY_ADVANCED_DINERS_TEXT;
             case 'diners-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_DINERS_DK_TEXT;
-            case 'edankort': return MODULE_PAYMENT_QUICKPAY_ADVANCED_EDANKORT_TEXT;
+//          case 'edankort': return MODULE_PAYMENT_QUICKPAY_ADVANCED_EDANKORT_TEXT;
             case 'jcb': return MODULE_PAYMENT_QUICKPAY_ADVANCED_JCB_TEXT;
             case 'mastercard': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_TEXT;
             case 'mastercard-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_DK_TEXT;
 		 case 'mastercard-debet': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_DEBET_TEXT;
             case 'mastercard-debet-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_DEBET_DK_TEXT;
-            case 'nordea-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_NORDEA_DK_TEXT;
+//          case 'nordea-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_NORDEA_DK_TEXT;
             case 'visa': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_TEXT;
             case 'visa-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_DK_TEXT;
             case 'visa-electron': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_ELECTRON_TEXT;
             case 'visa-electron-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_ELECTRON_DK_TEXT;
 		 case 'creditcard': return MODULE_PAYMENT_QUICKPAY_ADVANCED_CREDITCARD_TEXT;
-		 case 'ibill':  return MODULE_PAYMENT_QUICKPAY_ADVANCED_IBILL_DESCRIPTION;
-		 case 'viabill':  return MODULE_PAYMENT_QUICKPAY_ADVANCED_IBILL_DESCRIPTION;
+//		 case 'ibill':  return MODULE_PAYMENT_QUICKPAY_ADVANCED_IBILL_DESCRIPTION;
+		 case 'viabill':  return MODULE_PAYMENT_QUICKPAY_ADVANCED_VIABILL_TEXT;
             case 'fbg1886': return MODULE_PAYMENT_QUICKPAY_ADVANCED_FBG1886_TEXT;
             case 'paypal': return MODULE_PAYMENT_QUICKPAY_ADVANCED_PAYPAL_TEXT;
             case 'sofort': return MODULE_PAYMENT_QUICKPAY_ADVANCED_SOFORT_TEXT;
 //          case 'paii': return MODULE_PAYMENT_QUICKPAY_ADVANCED_PAII_TEXT;
 		 case 'mobilepay': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MOBILEPAY_TEXT;
+
+            case 'bitcoin': return MODULE_PAYMENT_QUICKPAY_ADVANCED_BITCOIN_TEXT;
+            case 'swish': return MODULE_PAYMENT_QUICKPAY_ADVANCED_SWISH_TEXT;
+            case 'trustly': return MODULE_PAYMENT_QUICKPAY_ADVANCED_TRUSTLY_TEXT;
+            case 'klarna': return MODULE_PAYMENT_QUICKPAY_ADVANCED_KLARNA_TEXT;
+
         }
         return '';
     }
