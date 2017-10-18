@@ -13,11 +13,12 @@
 
 // 2.3.4BS Edge compatibility
 if (!defined('DIR_WS_CLASSES')) define('DIR_WS_CLASSES','includes/classes/');
+if (!defined('DIR_WS_ICONS')) define('DIR_WS_ICONS','images/icons/');
 if (!defined('FILENAME_CHECKOUT_CONFIRMATION')) define('FILENAME_CHECKOUT_CONFIRMATION','checkout_confirmation.php');
 if (!defined('FILENAME_CHECKOUT_PAYMENT')) define('FILENAME_CHECKOUT_PAYMENT','checkout_payment.php');
 if (!defined('FILENAME_CHECKOUT_PROCESS')) define('FILENAME_CHECKOUT_PROCESS','checkout_process.php');
+if (!defined('FILENAME_CHECKOUT_SUCCESS')) define('FILENAME_CHECKOUT_SUCCESS','checkout_success.php');
 if (!defined('FILENAME_SHIPPING')) define('FILENAME_SHIPPING','shipping.php');
-
 if (!defined('FILENAME_CHECKOUT_SUCCESS')) define('FILENAME_CHECKOUT_SUCCESS','checkout_success.php');
 
 include(DIR_FS_CATALOG.DIR_WS_CLASSES.'QuickpayApi.php');
@@ -211,7 +212,7 @@ $iconc = (file_exists(DIR_WS_ICONS.$optionc.".gif") ? DIR_WS_ICONS.$optionc.".gi
 		 
 			 $selection = array('id' => $this->code,
          'module' => '<table width="100%" border="0">
-                    <tr class="moduleRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectQuickPayRowEffect(this, ' . ($optscount-1) . ',\''.$option.'\')">
+                    <tr class="moduleRow table-selection" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectQuickPayRowEffect(this, ' . ($optscount-1) . ',\''.$option.'\')">
                         <td class="main" style="height:22px;vertical-align:middle;">' .$options_text.($cost !=0 ? '</td><td class="main" style="height:22px;vertical-align:middle;"> (+ '.MODULE_PAYMENT_QUICKPAY_ADVANCED_FEELOCKINFO.')' :'').'
                             </td>
                     </tr></table>'.tep_draw_hidden_field('cardlock', $option));
@@ -220,7 +221,7 @@ $iconc = (file_exists(DIR_WS_ICONS.$optionc.".gif") ? DIR_WS_ICONS.$optionc.".gi
 	 }else{
 				
 					$selection['fields'][] = array('title' => '<table width="100%" border="0">
-                    <tr class="moduleRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectQuickPayRowEffect(this, ' . ($optscount-1) . ',\''.$option.'\')">
+                    <tr class="moduleRow table-selection" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectQuickPayRowEffect(this, ' . ($optscount-1) . ',\''.$option.'\')">
                         <td class="main" style="height:22px;vertical-align:middle;">' . $options_text.($cost !=0 ? '</td><td style="height:22px;vertical-align:middle;">(+ '.MODULE_PAYMENT_QUICKPAY_ADVANCED_FEELOCKINFO.')' :'').'
                             </td>
                     </tr></table>',
@@ -262,7 +263,7 @@ $icon = (file_exists(DIR_WS_ICONS.$option."_payment.gif") ? DIR_WS_ICONS.$option
 		}
 		
 		 //$cost = $this->calculate_order_fee($order->info['total'], $fees[$i]);
-		 $options_text = '<table><tr><td>'.tep_image($icon,$this->get_payment_options_name($option),$w,$h,' style="position:relative;border:0px;float:left;margin:'.$space.'px;" ').'</td><td style="height: 27px;white-space:nowrap;vertical-align:middle;font-size: 18px;font-color:#666;" >'.$this->get_payment_options_name($option).'</td></tr></table>';
+		 $options_text = '<table width="100%"><tr><td>'.tep_image($icon,$this->get_payment_options_name($option),$w,$h,' style="position:relative;border:0px;float:left;margin:'.$space.'px;" ').'</td><td style="height: 27px;white-space:nowrap;vertical-align:middle;" >'.$this->get_payment_options_name($option).'</td></tr></table>';
 				
 				   	
 			
@@ -270,16 +271,16 @@ $icon = (file_exists(DIR_WS_ICONS.$option."_payment.gif") ? DIR_WS_ICONS.$option
 		 
 		 $selection = array('id' => $this->code,
          'module' => '<table width="100%" border="0">
-                    <tr class="moduleRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectQuickPayRowEffect(this, ' . ($optscount-1) . ',\''.$option.'\')">
-                        <td class="main" style="height: 27px;white-space:nowrap;vertical-align:middle;font-size: 18px;font-color:#666;">' .$options_text.($cost !=0 ? '</td><td style="height:22px;vertical-align:middle;"> (+ '.MODULE_PAYMENT_QUICKPAY_ADVANCED_FEELOCKINFO.')' :'').'
+                    <tr class="moduleRow table-selection" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectQuickPayRowEffect(this, ' . ($optscount-1) . ',\''.$option.'\')">
+                        <td class="main" style="height: 27px;white-space:nowrap;vertical-align:middle;">' .$options_text.($cost !=0 ? '</td><td style="height:22px;vertical-align:middle;"> (+ '.MODULE_PAYMENT_QUICKPAY_ADVANCED_FEELOCKINFO.')' :'').'
                             </td>
                     </tr></table>'.tep_draw_hidden_field('cardlock', $option).tep_draw_hidden_field('qp_card', (isset($fees[1])) ? $fees[1] : '0'));
 		 
 		 
 	 }else{	
 					$selection['fields'][] = array('title' => '<table width="100%" border="0">
-                    <tr class="moduleRow" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectQuickPayRowEffect(this, ' . ($optscount-1) . ',\''.$option.'\')">
-                        <td class="main" style="height: 27px;white-space:nowrap;vertical-align:middle;font-size: 18px;font-color:#666;">' . $options_text.($cost !=0 ? '</td><td style="height:22px;vertical-align:middle;"> (+ '.MODULE_PAYMENT_QUICKPAY_ADVANCED_FEELOCKINFO.')' :'').'
+                    <tr class="moduleRow table-selection" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="selectQuickPayRowEffect(this, ' . ($optscount-1) . ',\''.$option.'\')">
+                        <td class="main" style="height: 27px;white-space:nowrap;vertical-align:middle;">' . $options_text.($cost !=0 ? '</td><td style="height:22px;vertical-align:middle;"> (+ '.MODULE_PAYMENT_QUICKPAY_ADVANCED_FEELOCKINFO.')' :'').'
                             </td>
                     </tr></table>',
                     'field' => 
@@ -1325,10 +1326,8 @@ tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, conf
             case '3d-maestro-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MAESTRO_DK_3D_TEXT;
             case '3d-mastercard': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_3D_TEXT;
             case '3d-mastercard-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_DK_3D_TEXT;
-
             case '3d-mastercard-debet': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_DEBET_3D_TEXT;
             case '3d-mastercard-debet-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_DEBET_DK_3D_TEXT;
-
             case '3d-visa': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_3D_TEXT;
             case '3d-visa-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_DK_3D_TEXT;
             case '3d-visa-electron': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_ELECTRON_3D_TEXT;
@@ -1339,9 +1338,7 @@ tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, conf
             case 'american-express': return MODULE_PAYMENT_QUICKPAY_ADVANCED_AMERICAN_EXPRESS_TEXT;
             case 'american-express-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_AMERICAN_EXPRESS_DK_TEXT;
             case 'dankort': return MODULE_PAYMENT_QUICKPAY_ADVANCED_DANKORT_TEXT;
-
             case '3d-dankort': return MODULE_PAYMENT_QUICKPAY_ADVANCED_DANKORT_3D_TEXT;
-
 //          case 'danske-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_DANSKE_DK_TEXT;
             case 'diners': return MODULE_PAYMENT_QUICKPAY_ADVANCED_DINERS_TEXT;
             case 'diners-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_DINERS_DK_TEXT;
@@ -1364,12 +1361,10 @@ tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, conf
             case 'sofort': return MODULE_PAYMENT_QUICKPAY_ADVANCED_SOFORT_TEXT;
 //          case 'paii': return MODULE_PAYMENT_QUICKPAY_ADVANCED_PAII_TEXT;
 		 case 'mobilepay': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MOBILEPAY_TEXT;
-
             case 'bitcoin': return MODULE_PAYMENT_QUICKPAY_ADVANCED_BITCOIN_TEXT;
             case 'swish': return MODULE_PAYMENT_QUICKPAY_ADVANCED_SWISH_TEXT;
             case 'trustly': return MODULE_PAYMENT_QUICKPAY_ADVANCED_TRUSTLY_TEXT;
             case 'klarna': return MODULE_PAYMENT_QUICKPAY_ADVANCED_KLARNA_TEXT;
-
         }
         return '';
     }
