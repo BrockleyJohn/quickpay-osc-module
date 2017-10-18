@@ -586,7 +586,7 @@ EOT;
 	$agree_terms = '
     <table id="agree_terms" width="100%" border="0" cellspacing="0" cellpadding="2">
       <tr>
-        <td class="main"><BR><b>' . HEADING_RETURN_POLICY . '</b> <a href="' . tep_href_link(FILENAME_SHIPPING, '', 'SSL') . '"><span class="orderEdit">(' . TEXT_VIEW . ')</span></a></td>
+        <td class="main"><h3><b>' . HEADING_RETURN_POLICY . '</b> <a href="' . tep_href_link(FILENAME_SHIPPING, '', 'SSL') . '"><span class="orderEdit">(' . TEXT_VIEW . ')</h3></span></a></td>
       </tr>
       <tr>
         <td>' . tep_draw_separator('pixel_trans.gif', '10', '10') . '</td>

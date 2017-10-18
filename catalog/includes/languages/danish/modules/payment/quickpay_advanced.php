@@ -23,6 +23,7 @@ if (!defined('HEADING_RETURN_POLICY')) define('HEADING_RETURN_POLICY','Handelsbe
 if (!defined('TEXT_VIEW')) define('TEXT_VIEW','Læs dem');
 if (!defined('TEXT_RETURN_POLICY')) define('TEXT_RETURN_POLICY','Der er ingen returret på denne ordre da den omhandler madvare. </font>');
 if (!defined('ACCEPT_CONDITIONS')) define('ACCEPT_CONDITIONS','Jeg har læst og accepteret betingelserne: ');
+if (!defined('CONDITION_AGREEMENT_ERROR')) define('CONDITION_AGREEMENT_ERROR','Du skal acceptere vores betingelser før du kan bestille');
 
 // Transaction errors  
   define('MODULE_PAYMENT_QUICKPAY_ADVANCED_ERROR_MERCHANT_UNKNOWN', 'Ukendt Merchant Nr');

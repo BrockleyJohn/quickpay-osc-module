@@ -10,6 +10,9 @@
   Released under the GNU General Public License
 */
 
+// 2.3.4BS Edge compatibility
+if (!defined('DIR_WS_ICONS')) define('DIR_WS_ICONS','images/icons/');
+
   class bm_quickpay {
     var $group = 'boxes';
     var $title;
