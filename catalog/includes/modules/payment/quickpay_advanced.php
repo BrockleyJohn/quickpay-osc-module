@@ -1324,10 +1324,10 @@ tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, conf
             case '3d-maestro': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MAESTRO_3D_TEXT;
             case '3d-maestro-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MAESTRO_DK_3D_TEXT;
             case '3d-mastercard': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_3D_TEXT;
-            case '3d-mastercard-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_ADVANCED_MASTERCARD_DK_3D_TEXT;
-            case '3d-visa': return MODULE_PAYMENT_QUICKPAY_ADVANCED_ADVANCED_VISA_3D_TEXT;
-            case '3d-visa-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_ADVANCED_VISA_DK_3D_TEXT;
-            case '3d-visa-electron': return MODULE_PAYMENT_QUICKPAY_ADVANCED_ADVANCED_VISA_ELECTRON_3D_TEXT;
+            case '3d-mastercard-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_DK_3D_TEXT;
+            case '3d-visa': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_3D_TEXT;
+            case '3d-visa-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_DK_3D_TEXT;
+            case '3d-visa-electron': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_ELECTRON_3D_TEXT;
             case '3d-visa-electron-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_ELECTRON_DK_3D_TEXT;
             case '3d-visa-debet': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_DEBET_3D_TEXT;
 			case '3d-visa-debet-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_DEBET_DK_3D_TEXT;
