@@ -1322,17 +1322,24 @@ tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, conf
             case '3d-maestro': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MAESTRO_3D_TEXT;
             case '3d-maestro-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MAESTRO_DK_3D_TEXT;
             case '3d-mastercard': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_3D_TEXT;
-            case '3d-mastercard-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_ADVANCED_MASTERCARD_DK_3D_TEXT;
-            case '3d-visa': return MODULE_PAYMENT_QUICKPAY_ADVANCED_ADVANCED_VISA_3D_TEXT;
-            case '3d-visa-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_ADVANCED_VISA_DK_3D_TEXT;
-            case '3d-visa-electron': return MODULE_PAYMENT_QUICKPAY_ADVANCED_ADVANCED_VISA_ELECTRON_3D_TEXT;
+            case '3d-mastercard-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_DK_3D_TEXT;
+
+            case '3d-mastercard-debet': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_DEBET_3D_TEXT;
+            case '3d-mastercard-debet-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_DEBET_DK_3D_TEXT;
+
+            case '3d-visa': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_3D_TEXT;
+            case '3d-visa-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_DK_3D_TEXT;
+            case '3d-visa-electron': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_ELECTRON_3D_TEXT;
             case '3d-visa-electron-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_ELECTRON_DK_3D_TEXT;
             case '3d-visa-debet': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_DEBET_3D_TEXT;
-			case '3d-visa-debet-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_DEBET_DK_3D_TEXT;
-			case '3d-creditcard': return MODULE_PAYMENT_QUICKPAY_ADVANCED_CREDITCARD_3D_TEXT;
+		 case '3d-visa-debet-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_DEBET_DK_3D_TEXT;
+		 case '3d-creditcard': return MODULE_PAYMENT_QUICKPAY_ADVANCED_CREDITCARD_3D_TEXT;
             case 'american-express': return MODULE_PAYMENT_QUICKPAY_ADVANCED_AMERICAN_EXPRESS_TEXT;
             case 'american-express-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_AMERICAN_EXPRESS_DK_TEXT;
             case 'dankort': return MODULE_PAYMENT_QUICKPAY_ADVANCED_DANKORT_TEXT;
+
+            case '3d-dankort': return MODULE_PAYMENT_QUICKPAY_ADVANCED_DANKORT_3D_TEXT;
+
             case 'danske-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_DANSKE_DK_TEXT;
             case 'diners': return MODULE_PAYMENT_QUICKPAY_ADVANCED_DINERS_TEXT;
             case 'diners-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_DINERS_DK_TEXT;
@@ -1340,21 +1347,21 @@ tep_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_title, conf
             case 'jcb': return MODULE_PAYMENT_QUICKPAY_ADVANCED_JCB_TEXT;
             case 'mastercard': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_TEXT;
             case 'mastercard-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_DK_TEXT;
-			case 'mastercard-debet': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_DEBET_TEXT;
+		 case 'mastercard-debet': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_DEBET_TEXT;
             case 'mastercard-debet-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MASTERCARD_DEBET_DK_TEXT;
             case 'nordea-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_NORDEA_DK_TEXT;
             case 'visa': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_TEXT;
             case 'visa-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_DK_TEXT;
             case 'visa-electron': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_ELECTRON_TEXT;
             case 'visa-electron-dk': return MODULE_PAYMENT_QUICKPAY_ADVANCED_VISA_ELECTRON_DK_TEXT;
-		    case 'creditcard': return MODULE_PAYMENT_QUICKPAY_ADVANCED_CREDITCARD_TEXT;
-			case 'ibill':  return MODULE_PAYMENT_QUICKPAY_ADVANCED_IBILL_DESCRIPTION;
-			case 'viabill':  return MODULE_PAYMENT_QUICKPAY_ADVANCED_IBILL_DESCRIPTION;
+		 case 'creditcard': return MODULE_PAYMENT_QUICKPAY_ADVANCED_CREDITCARD_TEXT;
+		 case 'ibill':  return MODULE_PAYMENT_QUICKPAY_ADVANCED_IBILL_DESCRIPTION;
+		 case 'viabill':  return MODULE_PAYMENT_QUICKPAY_ADVANCED_IBILL_DESCRIPTION;
             case 'fbg1886': return MODULE_PAYMENT_QUICKPAY_ADVANCED_FBG1886_TEXT;
             case 'paypal': return MODULE_PAYMENT_QUICKPAY_ADVANCED_PAYPAL_TEXT;
             case 'sofort': return MODULE_PAYMENT_QUICKPAY_ADVANCED_SOFORT_TEXT;
-//            case 'paii': return MODULE_PAYMENT_QUICKPAY_ADVANCED_PAII_TEXT;
-			case 'mobilepay': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MOBILEPAY_TEXT;
+//          case 'paii': return MODULE_PAYMENT_QUICKPAY_ADVANCED_PAII_TEXT;
+		 case 'mobilepay': return MODULE_PAYMENT_QUICKPAY_ADVANCED_MOBILEPAY_TEXT;
         }
         return '';
     }
