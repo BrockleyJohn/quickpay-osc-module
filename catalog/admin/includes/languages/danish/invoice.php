@@ -1,6 +1,6 @@
 <?php
 /*
-  $Id: invoice.php,v 1.1 2002/06/11 18:17:59 dgw_ Exp $
+  $Id$
 
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
@@ -10,8 +10,8 @@
   Released under the GNU General Public License
 */
 
-define('TABLE_HEADING_COMMENTS', 'Bemærkninger');
-define('TABLE_HEADING_PRODUCTS_MODEL', 'varenr.');
+define('TABLE_HEADING_COMMENTS', 'BemÃƒÂ¦rkninger');
+define('TABLE_HEADING_PRODUCTS_MODEL', 'Model');
 define('TABLE_HEADING_PRODUCTS', 'Produkter');
 define('TABLE_HEADING_TAX', 'Moms');
 define('TABLE_HEADING_TOTAL', 'Total');
@@ -21,13 +21,13 @@ define('TABLE_HEADING_TOTAL_EXCLUDING_TAX', 'Total (ex)');
 define('TABLE_HEADING_TOTAL_INCLUDING_TAX', 'Total (inkl)');
 
 define('ENTRY_SOLD_TO', 'SOLGT TIL:');
-define('ENTRY_SHIP_TO', 'LEVERES TIL:');
-define('ENTRY_PAYMENT_METHOD', 'Betalingsmåde:');
+define('ENTRY_SHIP_TO', 'LEVERET TIL:');
+define('ENTRY_PAYMENT_METHOD', 'BetalingsmÃƒÂ¥de:');
 define('ENTRY_SUB_TOTAL', 'Sub-Total:');
 define('ENTRY_TAX', 'Moms:');
 define('ENTRY_SHIPPING', 'Levering:');
 define('ENTRY_TOTAL', 'Total:');
 //Quickpay changed
-define('DENUNCIATION', 'Ordren betales med ViaBill. Det skyldige beløb kan alene betales med frigørende virkning til ViaBill, som fremsender særskilt opkrævning. Betaling kan ikke ske ved modregning af krav, der udspringer af andre retsforhold');
+define('DENUNCIATION', 'Ordren betales med ViaBill. Det skyldige belÃ¸b kan alene betales med frigÃ¸rende virkning til ViaBill, som fremsender sÃ¦rskilt opkrÃ¦vning. Betaling kan ikke ske ved modregning af krav, der udspringer af andre retsforhold');
 //Quickpay changed end
 ?>
