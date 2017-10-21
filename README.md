@@ -13,4 +13,7 @@ Can be installed without code changes on a store prepared for the Paypal App
 
 Built from an existing payment module by BLKOM https://github.com/loevendahl/quickpay10-oscommerce
 Additional Danish translations, testing and improvements by Bo Herrmannsen @boelle
-Version 1.0 supported by Quickpay.net
+Version 1.0 sponsored by Quickpay.net
+
+Support thread on osCommerce forums:
+https://forums.oscommerce.com/topic/412146-quickpay-payment-module-for-23/
