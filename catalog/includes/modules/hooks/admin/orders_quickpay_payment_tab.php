@@ -34,7 +34,7 @@
 				$order = new quickpay_order($order);
 			}
 	//		echo ('<pre>'.print_r($order,true).'</pre>');
-			if (array_key_exists('cc_transactionid',$order->info) && !is_null($order->info['cc_transactionid'])) {
+			if (array_key_exists('cc_transactionid',$order->info) && !is_null($order->info['cc_transactionid']) && $order->info['cc_transactionid'] <> 'NULL') {
 			// code moved from orders_gui_admin.php
 
 				// Only show quickpay transaction when we have an transacctionid from payment gateway
