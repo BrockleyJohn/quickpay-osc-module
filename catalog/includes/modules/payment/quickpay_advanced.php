@@ -14,12 +14,12 @@
 // 2.3.4BS Edge compatibility
 if (!defined('DIR_WS_CLASSES')) define('DIR_WS_CLASSES','includes/classes/');
 if (!defined('DIR_WS_ICONS')) define('DIR_WS_ICONS','images/icons/');
+if (!defined('FILENAME_ACCOUNT_HISTORY_INFO')) define('FILENAME_ACCOUNT_HISTORY_INFO','account_history_info.php');
 if (!defined('FILENAME_CHECKOUT_CONFIRMATION')) define('FILENAME_CHECKOUT_CONFIRMATION','checkout_confirmation.php');
 if (!defined('FILENAME_CHECKOUT_PAYMENT')) define('FILENAME_CHECKOUT_PAYMENT','checkout_payment.php');
 if (!defined('FILENAME_CHECKOUT_PROCESS')) define('FILENAME_CHECKOUT_PROCESS','checkout_process.php');
 if (!defined('FILENAME_CHECKOUT_SUCCESS')) define('FILENAME_CHECKOUT_SUCCESS','checkout_success.php');
 if (!defined('FILENAME_SHIPPING')) define('FILENAME_SHIPPING','shipping.php');
-if (!defined('FILENAME_CHECKOUT_SUCCESS')) define('FILENAME_CHECKOUT_SUCCESS','checkout_success.php');
 
 include(DIR_FS_CATALOG.DIR_WS_CLASSES.'QuickpayApi.php');
 
